@@ -10,6 +10,21 @@ float altura = Convert.ToSingle(Console.ReadLine());
 Console.Write("Entre com o seu peso em kg. Ex: 67,5: ");
 float peso = Convert.ToSingle(Console.ReadLine());
 
+String PesoIdeal() 
+{
+    double normalMinimo = Math.Pow(altura,2) * 18.5;
+    double normalMaximo = Math.Pow(altura,2) * 25;
+
+    if (imc < 18.5) {
+        return $"Por isso você precisa ganhar {Math.Round(normalMinimo - peso,2)}kg para atingir o peso normal.";
+    } else if (imc > 25)
+    {
+        return $"Por isso você precisa perder {Math.Round(peso - normalMaximo,2)}kg para atingir o peso normal.";
+    } else {
+        return "";
+    }
+}
+
 if (altura <= 00.00 || peso <= 00.00)
 {
     Console.Clear();
@@ -24,6 +39,7 @@ else
     Console.Clear();
     Console.WriteLine($"\n{nome}, sua altura é {altura} e seu peso {peso}");
     Console.WriteLine($"Seu IMC é {Math.Round(imc,2)}, isso significa que você está {situacao}");
+    Console.WriteLine(PesoIdeal());
 }
 
 string verificarIMC() 
@@ -58,6 +74,6 @@ string verificarIMC()
     }
     else
     {
-        return situacao = "";
+        throw new Exception("Erro!!");
     }
 }
